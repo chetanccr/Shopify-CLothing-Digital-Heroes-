@@ -1,0 +1,886 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopify Clothing | Official Store</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* ── LOGO IMAGE IN NAV ── */
+        .logo-img {
+            height: 52px;
+            width: auto;
+            object-fit: contain;
+            border-radius: 6px;
+            margin-right: 10px;
+            vertical-align: middle;
+        }
+        .logo { display: flex; align-items: center; cursor: pointer; gap: 0; }
+        .logo h1 { font-size: 22px; font-weight: 800; letter-spacing: -1px; }
+
+        /* ── PROMO BANNER ── */
+        .promo-banner {
+            position: relative;
+            width: 100%;
+            height: 420px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            background: #0a0a0a;
+        }
+        .promo-banner img.promo-bg {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.55;
+        }
+        .promo-content {
+            position: relative;
+            z-index: 2;
+            padding: 0 6%;
+            color: #fff;
+            max-width: 600px;
+        }
+        .promo-label {
+            display: inline-block;
+            background: #f97316;
+            color: #fff;
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: 3px;
+            padding: 5px 14px;
+            border-radius: 3px;
+            margin-bottom: 16px;
+            text-transform: uppercase;
+        }
+        .promo-content h2 {
+            font-size: 3.2rem;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 14px;
+            text-shadow: 0 2px 20px rgba(0,0,0,0.4);
+        }
+        .promo-content p {
+            font-size: 1rem;
+            color: rgba(255,255,255,0.85);
+            margin-bottom: 28px;
+            max-width: 480px;
+            line-height: 1.6;
+        }
+        .promo-btns { display: flex; gap: 14px; flex-wrap: wrap; }
+        .promo-btn-primary {
+            background: #f97316;
+            color: #fff;
+            padding: 14px 32px;
+            font-weight: 800;
+            font-size: 14px;
+            border-radius: 4px;
+            text-decoration: none;
+            letter-spacing: 1px;
+            transition: background 0.2s;
+        }
+        .promo-btn-primary:hover { background: #ea6200; }
+        .promo-btn-secondary {
+            background: transparent;
+            color: #fff;
+            padding: 14px 32px;
+            font-weight: 800;
+            font-size: 14px;
+            border-radius: 4px;
+            border: 2px solid rgba(255,255,255,0.6);
+            text-decoration: none;
+            letter-spacing: 1px;
+            transition: all 0.2s;
+        }
+        .promo-btn-secondary:hover { background: rgba(255,255,255,0.1); }
+
+        /* ── EXTRA SECTIONS ── */
+        .extra-section {
+            width: 100%;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Section: FASHION TRENDS (magazine style) */
+        .fashion-trends-sec {
+            background: #f8f6f3;
+            padding: 80px 5%;
+            display: flex;
+            align-items: center;
+            gap: 60px;
+        }
+        .fashion-trends-sec .ft-image {
+            flex: 0 0 420px;
+            height: 580px;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+        }
+        .fashion-trends-sec .ft-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .ft-text { flex: 1; }
+        .ft-text .overline {
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: 4px;
+            color: #e44;
+            margin-bottom: 16px;
+            text-transform: uppercase;
+        }
+        .ft-text h2 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1.05;
+            color: #0a0a0a;
+            margin-bottom: 20px;
+        }
+        .ft-text p {
+            font-size: 15px;
+            color: #666;
+            line-height: 1.8;
+            margin-bottom: 30px;
+            max-width: 480px;
+        }
+        .ft-trends-list {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px 24px;
+            margin-bottom: 32px;
+        }
+        .ft-trends-list li {
+            list-style: none;
+            font-size: 13px;
+            font-weight: 700;
+            color: #333;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .ft-trends-list li::before {
+            content: '';
+            width: 6px; height: 6px;
+            background: #e44;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+        .ft-cta {
+            display: inline-block;
+            background: #0a0a0a;
+            color: #fff;
+            padding: 14px 36px;
+            font-weight: 800;
+            font-size: 14px;
+            border-radius: 4px;
+            text-decoration: none;
+            letter-spacing: 1px;
+        }
+
+        /* Section: SUMMER SALE BANNER (full-width editorial) */
+        .summer-sale-sec {
+            height: 500px;
+            display: flex;
+            align-items: center;
+            position: relative;
+            background: #0a0a0a;
+            overflow: hidden;
+        }
+        .summer-sale-sec img.ss-bg {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.5;
+        }
+        .summer-sale-content {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            padding: 0 6%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .ss-left h2 {
+            font-size: 5rem;
+            font-weight: 800;
+            color: #fff;
+            line-height: 1;
+            letter-spacing: -3px;
+            margin-bottom: 8px;
+        }
+        .ss-left p { font-size: 1rem; color: rgba(255,255,255,0.75); }
+        .ss-right {
+            background: #f59f00;
+            color: #0a0a0a;
+            padding: 28px 40px;
+            border-radius: 12px;
+            text-align: center;
+        }
+        .ss-right .big-pct {
+            font-size: 4rem;
+            font-weight: 800;
+            line-height: 1;
+        }
+        .ss-right .ss-label {
+            font-size: 13px;
+            font-weight: 800;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            display: block;
+            margin-top: 4px;
+        }
+        .ss-right .ss-cta {
+            display: inline-block;
+            margin-top: 16px;
+            background: #0a0a0a;
+            color: #fff;
+            padding: 11px 28px;
+            font-weight: 800;
+            font-size: 13px;
+            border-radius: 4px;
+            text-decoration: none;
+        }
+
+        /* Section: SHORTS & T-SHIRTS spotlight */
+        .spotlight-sec {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            min-height: 560px;
+        }
+        .spotlight-image {
+            overflow: hidden;
+        }
+        .spotlight-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+        .spotlight-image:hover img { transform: scale(1.04); }
+        .spotlight-text {
+            background: #0f0f0f;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 60px 6%;
+            color: #fff;
+        }
+        .spotlight-text .sp-tag {
+            font-size: 10px;
+            font-weight: 800;
+            letter-spacing: 4px;
+            color: #f59f00;
+            margin-bottom: 16px;
+        }
+        .spotlight-text h2 {
+            font-size: 3rem;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 18px;
+        }
+        .spotlight-text p {
+            font-size: 15px;
+            color: rgba(255,255,255,0.65);
+            line-height: 1.7;
+            max-width: 400px;
+            margin-bottom: 32px;
+        }
+        .sp-features {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 36px;
+        }
+        .sp-feature {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 14px;
+            color: rgba(255,255,255,0.8);
+        }
+        .sp-feature-icon {
+            width: 32px; height: 32px;
+            background: #f59f00;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            flex-shrink: 0;
+        }
+        .sp-cta {
+            display: inline-block;
+            background: #f59f00;
+            color: #0a0a0a;
+            padding: 14px 36px;
+            font-weight: 800;
+            font-size: 14px;
+            border-radius: 4px;
+            text-decoration: none;
+            align-self: flex-start;
+        }
+
+        /* Section: HALLOWEEN SALE */
+        .halloween-sec {
+            position: relative;
+            height: 560px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+        }
+        .halloween-sec img.hw-bg {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .halloween-content {
+            position: relative;
+            z-index: 2;
+            padding: 0 6%;
+            text-align: right;
+            color: #fff;
+        }
+        .halloween-content .hw-tag {
+            display: inline-block;
+            background: #ff6b00;
+            color: #fff;
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: 3px;
+            padding: 5px 14px;
+            border-radius: 3px;
+            margin-bottom: 16px;
+        }
+        .halloween-content h2 {
+            font-size: 3.8rem;
+            font-weight: 800;
+            line-height: 1.05;
+            margin-bottom: 14px;
+            text-shadow: 0 2px 20px rgba(0,0,0,0.6);
+        }
+        .halloween-content p {
+            font-size: 15px;
+            color: rgba(255,255,255,0.8);
+            margin-bottom: 30px;
+        }
+        .hw-cta {
+            display: inline-block;
+            background: #ff6b00;
+            color: #fff;
+            padding: 14px 36px;
+            font-weight: 800;
+            font-size: 14px;
+            border-radius: 4px;
+            text-decoration: none;
+        }
+
+        /* Section: CLOTHING SALE BANNER */
+        .clothing-sale-sec {
+            height: 460px;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            background: #1a1a2e;
+        }
+        .clothing-sale-sec img.cs-bg {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.6;
+        }
+        .cs-content {
+            position: relative;
+            z-index: 2;
+            padding: 0 6%;
+            color: #fff;
+        }
+        .cs-content .cs-tag {
+            display: inline-block;
+            background: #e44;
+            color: #fff;
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: 3px;
+            padding: 5px 14px;
+            border-radius: 3px;
+            margin-bottom: 16px;
+        }
+        .cs-content h2 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 16px;
+            text-shadow: 0 2px 20px rgba(0,0,0,0.5);
+        }
+        .cs-content p {
+            font-size: 15px;
+            color: rgba(255,255,255,0.8);
+            margin-bottom: 28px;
+            max-width: 480px;
+        }
+        .cs-cta {
+            display: inline-block;
+            background: #fff;
+            color: #1a1a2e;
+            padding: 14px 36px;
+            font-weight: 800;
+            font-size: 14px;
+            border-radius: 4px;
+            text-decoration: none;
+        }
+
+        /* Section: WHY CHOOSE US */
+        .why-us-sec {
+            background: #fff;
+            padding: 80px 5%;
+            text-align: center;
+        }
+        .why-us-sec .section-title { margin-bottom: 50px; }
+        .why-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .why-card {
+            padding: 36px 24px;
+            background: #f9f9f9;
+            border-radius: 12px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .why-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 16px 40px rgba(0,0,0,0.1);
+        }
+        .why-icon { font-size: 2.5rem; margin-bottom: 16px; }
+        .why-card h4 { font-size: 16px; font-weight: 800; margin-bottom: 8px; }
+        .why-card p { font-size: 13px; color: #888; line-height: 1.6; }
+
+        /* Section: NEWSLETTER */
+        .newsletter-sec {
+            background: linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 100%);
+            padding: 90px 5%;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .newsletter-sec::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at center, rgba(249,163,22,0.07) 0%, transparent 60%);
+            pointer-events: none;
+        }
+        .newsletter-sec h2 {
+            font-size: 2.8rem;
+            font-weight: 800;
+            color: #fff;
+            margin-bottom: 12px;
+        }
+        .newsletter-sec p {
+            font-size: 15px;
+            color: rgba(255,255,255,0.6);
+            margin-bottom: 36px;
+        }
+        .newsletter-form {
+            display: flex;
+            gap: 0;
+            max-width: 480px;
+            margin: 0 auto;
+            border-radius: 6px;
+            overflow: hidden;
+            box-shadow: 0 8px 40px rgba(0,0,0,0.3);
+        }
+        .newsletter-form input {
+            flex: 1;
+            padding: 16px 20px;
+            font-size: 14px;
+            border: none;
+            outline: none;
+            font-family: inherit;
+            background: #fff;
+        }
+        .newsletter-form button {
+            background: #f59f00;
+            color: #0a0a0a;
+            padding: 16px 28px;
+            font-weight: 800;
+            font-size: 14px;
+            border: none;
+            cursor: pointer;
+            font-family: inherit;
+            letter-spacing: 1px;
+            transition: background 0.2s;
+        }
+        .newsletter-form button:hover { background: #e08e00; }
+
+        /* Responsive extras */
+        @media (max-width: 900px) {
+            .fashion-trends-sec { flex-direction: column; padding: 50px 5%; }
+            .fashion-trends-sec .ft-image { flex: 0 0 320px; width: 100%; }
+            .ft-text h2 { font-size: 2.5rem; }
+            .spotlight-sec { grid-template-columns: 1fr; }
+            .ss-left h2 { font-size: 3rem; }
+            .summer-sale-content { flex-direction: column; gap: 30px; text-align: center; }
+            .halloween-content { text-align: center; padding: 0 5%; }
+            .halloween-content h2 { font-size: 2.5rem; }
+            .why-grid { grid-template-columns: repeat(2, 1fr); }
+            .promo-content h2 { font-size: 2.2rem; }
+            .cs-content h2 { font-size: 2.4rem; }
+        }
+        @media (max-width: 600px) {
+            .why-grid { grid-template-columns: 1fr; }
+            .ft-trends-list { grid-template-columns: 1fr; }
+            .ss-left h2 { font-size: 2.2rem; }
+            .newsletter-form { flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="main-header">
+        <div class="nav-container">
+            <div class="logo">
+                <!-- CHANGE 1: Logo image added next to "SHOPIFY CLOTHING" text -->
+                <img src="photos\unnamed.webp" alt="Digital Heroes Logo" class="logo-img">
+                <h1>SHOPIFY CLOTHING</h1>
+            </div>
+            <nav class="nav-links">
+                <ul>
+                    <li><a href="#">NEW & TRENDING</a></li>
+                    <li><a href="#">MEN</a></li>
+                    <li><a href="#">WOMEN</a></li>
+                    <li><a href="#">KIDS</a></li>
+                    <li><a href="#">GIFT</a></li>
+                    <li><a href="#">SALE</a></li>
+                </ul>
+            </nav>
+            <div class="nav-icons">
+                <div class="search-bar">
+                    <input type="text" placeholder="Search for products, brands and more">
+                </div>
+                <div class="user-actions">
+                    <a href="#">Profile</a>
+                    <a href="#">Wishlist</a>
+                    <a href="#">Bag</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="hero-content">
+                <h1>FRESH STYLES, BOLD CHOICES</h1>
+                <p>Explore our exclusive 2026 collection and redefine your wardrobe with premium quality.</p>
+                <div class="hero-btns">
+                    <a href="#" class="shop-now">SHOP NOW</a>
+                    <a href="#" class="view-collection">VIEW COLLECTION</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="categories">
+            <h2 class="section-title">Shop By Category</h2>
+            <div class="category-grid">
+                <div class="category-card">
+                    <img src="https://images.unsplash.com/photo-1490578474895-699cd4e2cf59?q=80&w=2071" alt="Men">
+                    <div class="category-info">
+                        <h3>Men's Wear</h3>
+                        <span>Explore Now</span>
+                    </div>
+                </div>
+                <div class="category-card">
+                    <img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?q=80&w=2070" alt="Women">
+                    <div class="category-info">
+                        <h3>Women's Wear</h3>
+                        <span>Explore Now</span>
+                    </div>
+                </div>
+                <div class="category-card">
+                    <img src="https://images.unsplash.com/photo-1514090458221-65bb69cf63e6?q=80&w=2070" alt="Kids">
+                    <div class="category-info">
+                        <h3>Kids' Wear</h3>
+                        <span>Explore Now</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="brand-carousel">
+            <div class="logo-track">
+                <div class="logo-item">NIKE</div><div class="logo-item">PUMA</div>
+                <div class="logo-item">ADIDAS</div><div class="logo-item">LEVIS</div>
+                <div class="logo-item">REDTAPE</div><div class="logo-item">WOODLAND</div>
+                <div class="logo-item">MANGO</div><div class="logo-item">FCUK</div>
+                <div class="logo-item">CALVIN KLEIN</div><div class="logo-item">ALDO</div>
+                <div class="logo-item">BOOHOO</div>
+                <div class="logo-item">NIKE</div><div class="logo-item">PUMA</div>
+                <div class="logo-item">ADIDAS</div><div class="logo-item">LEVIS</div>
+                <div class="logo-item">REDTAPE</div><div class="logo-item">WOODLAND</div>
+                <div class="logo-item">MANGO</div><div class="logo-item">FCUK</div>
+                <div class="logo-item">CALVIN KLEIN</div><div class="logo-item">ALDO</div>
+                <div class="logo-item">BOOHOO</div>
+            </div>
+        </section>
+
+        <!-- ══════════════════════════════════════════════════════════════
+             CHANGE 2: PROMO BANNER before Deals section (using logo pic style + banner1.jpg bg)
+        ══════════════════════════════════════════════════════════════ -->
+        <section class="promo-banner">
+            <img class="promo-bg" src="banner1.jpg" alt="Fashion Banner">
+            <div class="promo-content">
+                <div class="promo-label">⚡ Exclusive Offer</div>
+                <h2>Summer<br>Fashion Sale</h2>
+                <p>Hurry up! Grab the best deals of the season. Up to 50% OFF on all items — limited time only.</p>
+                <div class="promo-btns">
+                    <a href="#" class="promo-btn-primary">SHOP NOW</a>
+                    <a href="#" class="promo-btn-secondary">VIEW ALL DEALS</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="offers-section">
+            <h2 class="section-title">Deals on Top Brands</h2>
+            <div class="offers-wrapper">
+                <div class="offers-container">
+                    <div class="offer-card">
+                        <div class="image-box">
+                            <img src="https://images.unsplash.com/photo-1542272604-787c3835535d?q=80&w=1000" alt="Levis">
+                            <div class="brand-badge"><h2>LEVI'S</h2></div>
+                        </div>
+                        <p class="offer-text">FLAT 40% OFF</p>
+                    </div>
+                    <div class="offer-card">
+                        <div class="image-box">
+                            <img src="https://images.unsplash.com/photo-1551537482-f2075a1d41f2?q=80&w=1000" alt="Zara">
+                            <div class="brand-badge"><h2>ZARA</h2></div>
+                        </div>
+                        <p class="offer-text">UP TO 50% OFF</p>
+                    </div>
+                    <div class="offer-card">
+                        <div class="image-box">
+                            <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?q=80&w=1000" alt="H&M">
+                            <div class="brand-badge"><h2>H&amp;M</h2></div>
+                        </div>
+                        <p class="offer-text">B2G1 FREE</p>
+                    </div>
+                    <div class="offer-card">
+                        <div class="image-box">
+                            <img src="https://images.unsplash.com/photo-1521572267360-ee0c2909d518?q=80&w=1000" alt="USPA">
+                            <div class="brand-badge"><h2>U.S. POLO</h2></div>
+                        </div>
+                        <p class="offer-text">MIN. 30% OFF</p>
+                    </div>
+                    <div class="offer-card">
+                        <div class="image-box">
+                            <img src="https://images.unsplash.com/photo-1551028719-00167b16eac5?q=80&w=1000" alt="Jack & Jones">
+                            <div class="brand-badge"><h2>JACK &amp; JONES</h2></div>
+                        </div>
+                        <p class="offer-text">FLAT 50% OFF</p>
+                    </div>
+                    <div class="offer-card">
+                        <div class="image-box">
+                            <img src="https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?q=80&w=1000" alt="Roadster">
+                            <div class="brand-badge"><h2>ROADSTER</h2></div>
+                        </div>
+                        <p class="offer-text">UP TO 60% OFF</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ══════════════════════════════════════════════════════════════
+             CHANGE 3: EXTRA SCROLLABLE SECTIONS (5+)
+        ══════════════════════════════════════════════════════════════ -->
+
+        <!-- EXTRA SECTION 1: Fashion Trends (from pic 3 – magazine poster) -->
+        <section class="fashion-trends-sec extra-section">
+            <div class="ft-image">
+                <img src="photos\Clothing Sale_ Fashion Banner for Social Media.avif" alt="Fashion Trends 2026">
+            </div>
+            <div class="ft-text">
+                <div class="overline">Editorial</div>
+                <h2>15 Fashion<br>Trends 2026</h2>
+                <p>From power blazers to relaxed silhouettes — discover the styles shaping every wardrobe this season. Curated by our expert stylists, just for you.</p>
+                <ul class="ft-trends-list">
+                    <li>Oversized Blazers</li>
+                    <li>Quiet Luxury</li>
+                    <li>Monochrome Looks</li>
+                    <li>Coastal Grandma</li>
+                    <li>Y2K Revival</li>
+                    <li>Boho Chic</li>
+                    <li>Athleisure 2.0</li>
+                    <li>Regencycore</li>
+                </ul>
+                <a href="#" class="ft-cta">EXPLORE TRENDS</a>
+            </div>
+        </section>
+
+        <!-- EXTRA SECTION 2: Summer Sale Full Banner (from pic 2 purple fashion banner) -->
+        <section class="summer-sale-sec extra-section">
+            <img class="ss-bg" src="fashion1.avif" alt="Summer Sale">
+            <div class="summer-sale-content">
+                <div class="ss-left">
+                    <h2>SUMMER<br>FASHION<br>SALE</h2>
+                    <p>The season's biggest discounts are here.</p>
+                </div>
+                <div class="ss-right">
+                    <div class="big-pct">50%</div>
+                    <span class="ss-label">OFF FOR ALL ITEMS</span>
+                    <br>
+                    <a href="#" class="ss-cta">ORDER NOW</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- EXTRA SECTION 3: Shorts & T-Shirts Spotlight (pic 5 – SHORTS___T-SHIRT.avif) -->
+        <section class="spotlight-sec extra-section">
+            <div class="spotlight-image">
+                <img src="photos\SHORTS & T-SHIRT.avif" alt="Shorts and T-Shirts">
+            </div>
+            <div class="spotlight-text">
+                <div class="sp-tag">NEW ARRIVALS</div>
+                <h2>Shorts &<br>T-Shirts<br>Collection</h2>
+                <p>Stay fresh, stay bold. Our new Shorts & T-Shirt collection blends comfort with street-ready style — perfect for every occasion.</p>
+                <div class="sp-features">
+                    <div class="sp-feature">
+                        <div class="sp-feature-icon">🌬️</div>
+                        <span>100% Breathable Fabric</span>
+                    </div>
+                    <div class="sp-feature">
+                        <div class="sp-feature-icon">🎨</div>
+                        <span>20+ Exclusive Colorways</span>
+                    </div>
+                    <div class="sp-feature">
+                        <div class="sp-feature-icon">✂️</div>
+                        <span>Sizes XS to 4XL Available</span>
+                    </div>
+                </div>
+                <a href="#" class="sp-cta">SHOP COLLECTION</a>
+            </div>
+        </section>
+
+        <!-- EXTRA SECTION 4: Halloween Sale (pic 6 – Halloween_fashion_sales_poster.jpg) -->
+        <section class="halloween-sec extra-section">
+            <img class="hw-bg" src="photos\Halloween fashion sales poster.jpg" alt="Halloween Sale">
+            <div class="halloween-content">
+                <div class="hw-tag">👻 HALLOWEEN SPECIAL</div>
+                <h2>Premium<br>Blazer<br>Collection</h2>
+                <p>Get spine-chilling deals on our Premium Blazer range.<br>Available in XS · S · M · L · XL</p>
+                <a href="#" class="hw-cta">SHOP HALLOWEEN SALE</a>
+            </div>
+        </section>
+
+        <!-- EXTRA SECTION 5: Clothing Sale Banner (pic 7 – Clothing_Sale) -->
+        <section class="clothing-sale-sec extra-section">
+            <img class="cs-bg" src="clothing-sale.avif" alt="Clothing Sale">
+            <div class="cs-content">
+                <div class="cs-tag">🔥 LIMITED TIME</div>
+                <h2>Big Clothing<br>Sale Event</h2>
+                <p>Massive discounts across all categories — Men, Women & Kids. Don't miss out on this season's best sale event.</p>
+                <a href="#" class="cs-cta">GRAB THE DEAL</a>
+            </div>
+        </section>
+
+        <!-- EXTRA SECTION 6: Why Choose Us -->
+        <section class="why-us-sec extra-section">
+            <h2 class="section-title">Why Shop With Us?</h2>
+            <div class="why-grid">
+                <div class="why-card">
+                    <div class="why-icon">🚚</div>
+                    <h4>Free Delivery</h4>
+                    <p>On all orders above ₹999. Fast and reliable shipping across India.</p>
+                </div>
+                <div class="why-card">
+                    <div class="why-icon">↩️</div>
+                    <h4>Easy Returns</h4>
+                    <p>14-day hassle-free returns. No questions asked, we've got you covered.</p>
+                </div>
+                <div class="why-card">
+                    <div class="why-icon">🛡️</div>
+                    <h4>100% Authentic</h4>
+                    <p>Every product is verified original. We guarantee quality on every order.</p>
+                </div>
+                <div class="why-card">
+                    <div class="why-icon">💳</div>
+                    <h4>Secure Payments</h4>
+                    <p>Shop safely with encrypted payments — UPI, cards, wallets & more.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- EXTRA SECTION 7: Newsletter -->
+        <section class="newsletter-sec extra-section">
+            <h2>Stay in the Loop 📬</h2>
+            <p>Subscribe to get exclusive deals, style tips and new arrivals straight to your inbox.</p>
+            <div class="newsletter-form">
+                <input type="email" placeholder="Enter your email address…">
+                <button onclick="this.textContent='✓ Subscribed!';this.style.background='#16a34a';setTimeout(()=>{this.textContent='SUBSCRIBE';this.style.background='';},2500)">SUBSCRIBE</button>
+            </div>
+        </section>
+    </main>
+
+    <footer class="main-footer">
+        <div class="footer-container">
+            <div class="footer-col">
+                <h4>ONLINE SHOPPING</h4>
+                <ul>
+                    <li><a href="#">Men</a></li><li><a href="#">Women</a></li>
+                    <li><a href="#">Kids</a></li><li><a href="#">Home & Living</a></li>
+                    <li><a href="#">Beauty</a></li><li><a href="#">Gift Cards</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>CUSTOMER POLICIES</h4>
+                <ul>
+                    <li><a href="#">Contact Us</a></li><li><a href="#">FAQ</a></li>
+                    <li><a href="#">T&C</a></li><li><a href="#">Returns</a></li>
+                    <li><a href="#">Track Orders</a></li><li><a href="#">Shipping</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>USEFUL LINKS</h4>
+                <ul>
+                    <li><a href="#">Blog</a></li><li><a href="#">Careers</a></li>
+                    <li><a href="#">Site Map</a></li><li><a href="#">Corporate Information</a></li>
+                </ul>
+                <div class="social-links">
+                    <h4>KEEP IN TOUCH</h4>
+                    <div class="social-icons">
+                        <span>FB</span> <span>TW</span> <span>YT</span> <span>IG</span>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-col">
+                <div class="guarantee-item"><strong>100% ORIGINAL</strong> guarantee for all products.</div>
+                <div class="guarantee-item"><strong>Return within 14 days</strong> of receiving order.</div>
+            </div>
+        </div>
+        <div class="popular-searches">
+            <h4>POPULAR SEARCHES</h4>
+            <p>Makeup | Dresses For Girls | T-Shirts | Sandals | Headphones | Babydolls | Blazers For Men | Handbags | Ladies Watches | Bags | Sport Shoes | Reebok Shoes | Puma Shoes | Boxers | Wallets | Tops</p>
+        </div>
+    </footer>
+    <script src="scriptt.js"></script>
+
+</body>
+</html>
